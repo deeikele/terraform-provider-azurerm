@@ -1,0 +1,7 @@
+quickstart/201-machine-learning-moderately-secure/.terraform.lock.hcl
+quickstart/201-machine-learning-moderately-secure/terraform.tfstate
+quickstart/201-machine-learning-moderately-secure/terraform.tfstate.backup
+quickstart/201-machine-learning-moderately-secure/.terraform/providers/registry.terraform.io/azure/azapi/0.3.0/windows_amd64/terraform-provider-azapi_v0.3.0.exe
+quickstart/201-machine-learning-moderately-secure/.terraform/providers/registry.terraform.io/hashicorp/azurerm/2.78.0/windows_amd64/terraform-provider-azurerm_v2.78.0_x5.exe
+quickstart/201-machine-learning-moderately-secure/.terraform/providers/registry.terraform.io/hashicorp/random/3.3.1/windows_amd64/terraform-provider-random_v3.3.1_x5.exe
+quickstart/201-machine-learning-moderately-secure/demo.tfplan

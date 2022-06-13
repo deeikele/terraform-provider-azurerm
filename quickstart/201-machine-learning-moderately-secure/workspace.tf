@@ -173,6 +173,17 @@ resource "azurerm_private_endpoint" "mlw_ple" {
   }
 }
 
+resource "azapi_update_resource" "default" {
+  type      = "Microsoft.MachineLearningServices/workspaces@2022-05-01"
+  resource_id = azurerm_machine_learning_workspace.default.id
+
+  body = jsonencode({
+    properties = {
+      publicNetworkAccess = "Disabled"
+    }
+  })
+}
+
 # Compute cluster for image building required since the workspace is behind a vnet.
 # For more details, see https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-create-secure-workspace#configure-image-builds.
 resource "azurerm_machine_learning_compute_cluster" "image-builder" {
