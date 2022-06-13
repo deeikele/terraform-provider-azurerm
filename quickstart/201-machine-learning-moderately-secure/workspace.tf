@@ -61,8 +61,19 @@ resource "azurerm_machine_learning_workspace" "default" {
   }
 
   # Args of use when using an Azure Private Link configuration
-  public_network_access_enabled = false
   image_build_compute_name      = var.image_build_compute_name
+
+  # In 2022-05-01 Machine Learning API allowPublicAccessBehindVNet will be deprecated over by publicNetworkAccess 
+  # public network access_enabled provides forward compatibility to this change but in the background uses allowPublicAccessBehindVNet
+  # allowPublicAccessBehindVNet as a property can only be set for machine learning workspaces with an existing private link endpoint  
+  public_network_access_enabled = false
+
+  lifecycle {
+      ignore_changes = [
+        # updating it shouldn't force replacement which today incorrectly is the case
+        public_network_access_enabled
+      ]
+  }
 
 }
 
@@ -168,7 +179,7 @@ resource "azurerm_machine_learning_compute_cluster" "image-builder" {
   name                          = var.image_build_compute_name
   location                      = azurerm_resource_group.default.location
   vm_priority                   = "LowPriority"
-  vm_size                       = "Standard_DS2_v2"
+  vm_size                       = "STANDARD_DS2_V2"
   machine_learning_workspace_id = azurerm_machine_learning_workspace.default.id
   subnet_resource_id            = azurerm_subnet.snet-training.id
 
@@ -182,3 +193,4 @@ resource "azurerm_machine_learning_compute_cluster" "image-builder" {
     type = "SystemAssigned"
   }
 }
+
