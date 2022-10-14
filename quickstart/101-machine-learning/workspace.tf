@@ -19,8 +19,10 @@ resource "azurerm_storage_account" "default" {
   name                     = "st${var.name}${var.environment}"
   location                 = azurerm_resource_group.default.location
   resource_group_name      = azurerm_resource_group.default.name
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
+  account_tier             = "Premium"
+  access_tier = "Hot"
+  account_replication_type = "LRS"
+  account_kind = "FileStorage"
 }
 
 resource "azurerm_container_registry" "default" {

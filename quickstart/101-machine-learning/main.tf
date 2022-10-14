@@ -16,6 +16,6 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "default" {
-  name     = "rg-${var.name}-${var.environment}"
+  name     = "deeikele-tmp-premiumst"
   location = var.location
 }
